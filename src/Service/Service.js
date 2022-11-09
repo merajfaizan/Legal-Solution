@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import "react-photo-view/dist/react-photo-view.css";
+import { PhotoProvider, PhotoView } from "react-photo-view";
 
 const Service = ({ service }) => {
   const [details, setDetails] = useState(service.about);
@@ -11,11 +13,15 @@ const Service = ({ service }) => {
   return (
     <div>
       <div className="p-3 shadow-lg rounded-2xl border border-x-firstColor border-y-orange-400">
-        <img
-          className="w-full h-64 object-cover rounded-xl mb-4"
-          src={service.img}
-          alt=""
-        />
+        <PhotoProvider>
+          <PhotoView src={service.img}>
+            <img
+              className="w-full h-64 object-cover rounded-xl mb-4"
+              src={service.img}
+              alt=""
+            />
+          </PhotoView>
+        </PhotoProvider>
         <p className="text-3xl font-bold text-left">{service.serviceName}</p>
         <p className="text-lg text-left mt-5">
           <span className="font-semibold">About:</span>
