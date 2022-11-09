@@ -1,10 +1,15 @@
-import React from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import lawyerHero from "../../Assets/Images/lawyer-hero.jpg";
 import Service from "../../Service/Service";
 
 const Home = () => {
-  const services = useLoaderData();
+  const [services, setServices] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:5000/services")
+      .then((res) => res.json())
+      .then((data) => setServices(data));
+  }, []);
   return (
     <div>
       <div className="relative flex justify-center">
@@ -36,7 +41,7 @@ const Home = () => {
           my services
         </h1>
         <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4 p-5">
-          {services.map((service) => (
+          {services?.map((service) => (
             <Service key={service._id} service={service}></Service>
           ))}
         </div>
