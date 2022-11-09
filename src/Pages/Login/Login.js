@@ -1,13 +1,51 @@
-import React from "react";
+import { GoogleAuthProvider } from "firebase/auth";
+import React, { useContext } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 import Header from "../Shared/Header/Header";
 
 const Login = () => {
+  const { providerLogin, logIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
+  // ? google signup
+  const googleProvider = new GoogleAuthProvider();
+  const handleGoogleSignin = () => {
+    providerLogin(googleProvider)
+      .then((result) => {
+        const user = result.user;
+        navigate(from, { replace: true });
+      })
+      .catch((error) => console.log(error));
+  };
+
+  // ? login method by email and password
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    logIn(email, password)
+      .then((result) => {
+        const user = result.user;
+        form.reset();
+        navigate(from, { replace: true });
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  };
   return (
     <div>
       <Header></Header>
       <div className="grid grid-cols-2 justify-center items-center">
-        <form className="p-8 w-2/4 mx-auto shadow-xl rounded-lg border">
+        <form onSubmit={handleLogin} className="p-8 w-2/4 mx-auto shadow-xl rounded-lg border">
           <button
+            onClick={handleGoogleSignin}
             type="button"
             className="text-firstColor w-full hover:text-white bg-white border border-firstColor hover:bg-secondColor/70  font-semibold rounded-lg text-md px-5 py-2.5 text-center inline-flex items-center mr-2 mb-2"
           >
