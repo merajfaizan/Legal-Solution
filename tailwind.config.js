@@ -6,6 +6,7 @@ module.exports = {
   ],
   theme: {
     extend: {},
+    colors: { firstColor: "#da8e5d", secondColor: "#d98b59" },
   },
   plugins: [require("flowbite/plugin"), require("daisyui")],
 };
