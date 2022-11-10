@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { useLoaderData} from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import "react-photo-view/dist/react-photo-view.css";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
@@ -11,9 +11,7 @@ const ServiceDetails = () => {
   const { user } = useContext(AuthContext);
   const [date, setDate] = useState(Date());
   const service = useLoaderData();
-  console.log(service);
   const reviews = service?.serviceReviews;
-  console.log(service.serviceReviews);
 
   // ? review adding method
   const addReview = (e) => {
@@ -42,7 +40,7 @@ const ServiceDetails = () => {
       time: date,
     };
 
-    fetch("http://localhost:5000/addreview", {
+    fetch("https://ligal-solution-server.vercel.app/addreview", {
       method: "PUT",
       headers: {
         "content-type": "application/json",

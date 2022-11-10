@@ -16,6 +16,7 @@ const Login = () => {
     providerLogin(googleProvider)
       .then((result) => {
         const user = result.user;
+        console.dir(user)
         navigate(from, { replace: true });
       })
       .catch((error) => console.log(error));
@@ -32,6 +33,7 @@ const Login = () => {
     logIn(email, password)
       .then((result) => {
         const user = result.user;
+        console.dir(user)
         form.reset();
         navigate(from, { replace: true });
       })

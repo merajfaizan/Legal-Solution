@@ -28,17 +28,20 @@ const router = createBrowserRouter([
       {
         path: "/services",
         element: <Services></Services>,
-        loader: () => fetch("http://localhost:5000/allservices"),
+        loader: () =>
+          fetch("https://ligal-solution-server.vercel.app/allservices"),
       },
       {
         path: "/blog",
-        element: <Blog></Blog> ,
+        element: <Blog></Blog>,
       },
       {
         path: "/services/:_id",
         element: <ServiceDetails></ServiceDetails>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/services/${params._id}`),
+          fetch(
+            `https://ligal-solution-server.vercel.app/services/${params._id}`
+          ),
       },
       {
         path: "/myreview",

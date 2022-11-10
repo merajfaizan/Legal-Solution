@@ -14,7 +14,7 @@ const AddService = () => {
     const serviceReviews = [];
     const service = { serviceName, img, about, ratings, price, serviceReviews };
 
-    fetch("http://localhost:5000/services", {
+    fetch("https://ligal-solution-server.vercel.app/services", {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -22,7 +22,7 @@ const Register = () => {
           email: detaileduser.email,
           userReview: [],
         };
-        fetch("http://localhost:5000/user", {
+        fetch("https://ligal-solution-server.vercel.app/user", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -56,7 +56,7 @@ const Register = () => {
           email: detaileduser.email,
           userReview: [],
         };
-        fetch("http://localhost:5000/user", {
+        fetch("https://ligal-solution-server.vercel.app/user", {
           method: "POST",
           headers: {
             "content-type": "application/json",
