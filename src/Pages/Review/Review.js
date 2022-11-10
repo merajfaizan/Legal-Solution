@@ -1,8 +1,6 @@
 import React from "react";
 
 const Review = ({review}) => {
-  console.log(review.name);
-
   return (
     <div className=" bg-white my-4 p-5 rounded-lg">
       <div className="flex items-center space-x-4">

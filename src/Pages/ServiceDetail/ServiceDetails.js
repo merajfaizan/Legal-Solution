@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import "react-photo-view/dist/react-photo-view.css";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
@@ -9,17 +9,23 @@ const ServiceDetails = () => {
   const { user } = useContext(AuthContext);
   const [date, setDate] = useState(Date());
   const service = useLoaderData();
+  console.log(service);
   const reviews = service?.serviceReviews;
   console.log(service.serviceReviews);
+  const navigate = useNavigate();
 
   // ? review adding method
   const addReview = (e) => {
     e.preventDefault();
     setDate(Date());
+    if (user?.uid === undefined || user?.uid === null) {
+      return navigate("/login");
+    }
     const form = e.target;
     const review = {
       serviceId: service._id,
       uid: user?.uid,
+      service: service?.serviceName,
       name: user?.displayName,
       photo: user?.photoURL,
       reviewText: form.review.value,

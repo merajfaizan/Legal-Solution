@@ -13,6 +13,7 @@ const Home = () => {
   }, []);
   return (
     <div>
+      {/* bannar section */}
       <div className="relative flex justify-center">
         <h1 className="absolute z-10 top-1/3 font-bold capitalize text-firstColor text-2xl md:text-5xl lg:text-5xl">
           welcome to legal solution
@@ -37,8 +38,9 @@ const Home = () => {
           alt="hero-sec"
         />
       </div>
+      {/* my services section */}
       <div className="text-center my-8">
-        <h1 className="text-5xl text-white bg-orange-400 font-bold border-2 border-firstColor shadow-xl p-5 rounded-xl capitalize mb-8">
+        <h1 className="text-5xl text-firstColor bg-gray-800 font-bold border-2 border-firstColor shadow-xl p-5 rounded-xl capitalize mb-8">
           my services
         </h1>
         <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-4 p-5 relative">
@@ -76,6 +78,63 @@ const Home = () => {
             See More Services
           </button>
         </Link>
+      </div>
+      {/* about me */}
+      <div className="text-center my-8">
+        <h1 className="text-5xl text-firstColor bg-gray-800 font-bold border-2 border-firstColor shadow-xl p-5 rounded-xl capitalize mb-8">
+          About Me
+        </h1>
+        <div className="hero bg-base-200">
+          <div className="flex flex-col lg:flex-row">
+            <img
+              src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+              className=" lg:w-1/3 lg:mr-9 h-480 object-cover rounded-lg shadow-2xl"
+              alt=""
+            />
+            <div className="lg:w-2/3 text-left p-4">
+              <h1 className="text-5xl mt-4 lg:mt-7 font-bold">HI, I'm Alex </h1>
+              <p className="py-6 text-2xl font-semibold capitalize">
+                I am Professional lawyer expertise in business and agreements. i
+                have 10+ years of experience and also i am worked with 100+
+                clients over the world.
+              </p>
+              <p className="text-lg font-semibold capitalize">
+                <span className="text-xl font-semibold">Education:</span> LL.B
+                (Hon's)Completed From Stamford University Of Bangladesh
+              </p>
+              <p className="text-lg font-semibold capitalize">
+                <span className="text-xl font-semibold">Language:</span> bangla
+                , english, urdu, hindi.
+              </p>
+              <p className="text-lg font-semibold capitalize">
+                <span className="text-xl font-semibold">Specialization:</span>{" "}
+                Registration Law , labour law , tax law , etc.
+              </p>
+              <p className="text-lg font-semibold capitalize">
+                <span className="text-xl font-semibold">Practice Courts:</span>{" "}
+                supreme court of Bangladesh
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* career section */}
+      <h1 className="text-5xl text-center text-firstColor bg-gray-800 font-bold border-2 border-firstColor shadow-xl p-5 rounded-xl capitalize mb-8">
+        My career
+      </h1>
+      <div className="bg-base-200 text-center mb-8 rounded-lg p-8 flex flex-col lg:flex-row justify-around">
+        <div className="flex flex-col w-40 bg-white p-5 rounded-xl border border-firstColor">
+          <h1 className="text-2xl font-bold">10+ Years</h1>
+          <p className="text-xl font-semibold">Experience</p>
+        </div>
+        <div className="flex flex-col  w-40 bg-white p-5 rounded-xl border border-firstColor">
+          <h1 className="text-2xl font-bold">100+</h1>
+          <p className="text-xl font-semibold">Clients</p>
+        </div>
+        <div className="flex flex-col  w-40 bg-white p-5 rounded-xl border border-firstColor">
+          <h1 className="text-2xl font-bold">20+</h1>
+          <p className="text-xl font-semibold">Country's</p>
+        </div>
       </div>
     </div>
   );
