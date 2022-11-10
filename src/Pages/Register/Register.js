@@ -5,7 +5,8 @@ import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 import Header from "../Shared/Header/Header";
 
 const Register = () => {
-  const { providerLogin, createUser } = useContext(AuthContext);
+  const { providerLogin, createUser, updateUserProfile } =
+    useContext(AuthContext);
   const navigate = useNavigate();
 
   // ? google signup
@@ -13,7 +14,25 @@ const Register = () => {
   const handleGoogleSignin = () => {
     providerLogin(googleProvider)
       .then((result) => {
-        const user = result.user;
+        const detaileduser = result.user;
+        const user = {
+          uid: detaileduser.uid,
+          displayName: detaileduser.displayName,
+          photoURL: detaileduser.photoURL,
+          email: detaileduser.email,
+          userReview: [],
+        };
+        fetch("http://localhost:5000/user", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(user),
+        })
+          .then((res) => res.json())
+          .then((data) => console.log(data))
+          .catch((err) => console.error(err));
+
         navigate("/");
       })
       .catch((error) => console.log(error));
@@ -29,7 +48,26 @@ const Register = () => {
 
     createUser(email, password)
       .then((result) => {
-        const user = result.user;
+        const detaileduser = result.user;
+        const user = {
+          uid: detaileduser.uid,
+          displayName: name,
+          photoURL: photoUrl,
+          email: detaileduser.email,
+          userReview: [],
+        };
+        fetch("http://localhost:5000/user", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(user),
+        })
+          .then((res) => res.json())
+          .then((data) => console.log(data))
+          .catch((err) => console.error(err));
+
+        handleUpdateUserProfile(name, photoUrl);
         form.reset();
         navigate("/");
       })
@@ -37,6 +75,17 @@ const Register = () => {
         console.error(error);
       });
   };
+
+  const handleUpdateUserProfile = (name, photoUrl) => {
+    const profile = {
+      displayName: name,
+      photoURL: photoUrl,
+    };
+    updateUserProfile(profile)
+      .then(() => {})
+      .catch((error) => console.error(error));
+  };
+
   return (
     <div>
       <Header></Header>
