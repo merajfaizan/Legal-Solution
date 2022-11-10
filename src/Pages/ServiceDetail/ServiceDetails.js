@@ -1,9 +1,11 @@
 import React, { useContext, useState } from "react";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { useLoaderData} from "react-router-dom";
 import "react-photo-view/dist/react-photo-view.css";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 import Review from "../Review/Review";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ServiceDetails = () => {
   const { user } = useContext(AuthContext);
@@ -12,14 +14,22 @@ const ServiceDetails = () => {
   console.log(service);
   const reviews = service?.serviceReviews;
   console.log(service.serviceReviews);
-  const navigate = useNavigate();
 
   // ? review adding method
   const addReview = (e) => {
     e.preventDefault();
     setDate(Date());
     if (user?.uid === undefined || user?.uid === null) {
-      return navigate("/login");
+      return toast.error("Please Login First.", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
     const form = e.target;
     const review = {
@@ -159,6 +169,7 @@ const ServiceDetails = () => {
         ))}
         {/* demo end */}
       </div>
+      <ToastContainer />
     </div>
   );
 };
